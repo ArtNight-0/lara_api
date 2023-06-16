@@ -1,0 +1,261 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel OpenApi Demo Documentation",
+        "description": "Lara-API Latihan",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "",
+                "description": "Login",
+                "operationId": "auth_login",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": true,
+                                    "message": "Login Successfull",
+                                    "data": []
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/product/{id}": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "",
+                "description": "Get data by id",
+                "operationId": "product_show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": true,
+                                    "message": "Get Data Successfull",
+                                    "data": []
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "",
+                "description": "Update Data",
+                "operationId": "product_update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": true,
+                                    "message": "Update Data Successfull",
+                                    "data": []
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearirAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "",
+                "description": "Delete data",
+                "operationId": "product_destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "OKE",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": true,
+                                    "message": "Delete Data successfull",
+                                    "data": []
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/product": {
+            "post": {
+                "tags": [
+                    "product"
+                ],
+                "summary": "",
+                "description": "insert data",
+                "operationId": "product_store",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": true,
+                                    "massage": "Insert Data Successfull",
+                                    "data": []
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

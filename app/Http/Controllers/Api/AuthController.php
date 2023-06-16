@@ -16,6 +16,43 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except'=>['login','register']]);
     }
 
+     /**
+ * @OA\Post(
+ *     path="/api/login",
+ *     summary="",
+ *     tags={"Auth"},
+ *     description="Login",
+ *     operationId="auth_login",
+ *     @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="multipart/form-data",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="email",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="password",
+ *                     type="string"
+ *                 )
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response="default",
+ *         description="OK",
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             example={
+ *                 "success"=True,
+ *                 "message"="Login Successfull",
+ *                 "data"={},
+ *             },
+ *         )
+ *     )
+ * )
+ */
+
     public function login(Request $request){
         $request->validate([
             'email'=> 'required|string|email',
